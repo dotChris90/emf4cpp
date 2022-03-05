@@ -1,4 +1,3 @@
-from json import tool
 from conans import ConanFile, tools
 from conan.tools.cmake import CMakeToolchain, CMake, CMakeDeps
 from conan.tools.layout import cmake_layout
@@ -67,7 +66,8 @@ class Emf4cppConan(ConanFile):
             os.path.join(self.package_folder,"include","emf4cpp","ecore.hpp"),
             os.path.join(self.package_folder,"include","ecore.hpp")
         )
-    
+        
     def package_info(self):
+        self.cpp_info.set_property("cmake_find_mode", "None")
+        self.cpp_info.builddirs.append(os.path.join("lib","cmake","EMF4CPP"))
         self.cpp_info.libs = tools.collect_libs(self)
-
